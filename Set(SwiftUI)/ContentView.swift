@@ -9,8 +9,9 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        Text("Hello, world!")
-            .padding()
+        Diamond()
+            .stroke(lineWidth: 5)
+            .aspectRatio(3/1.5, contentMode: .fit)
     }
 }
 
