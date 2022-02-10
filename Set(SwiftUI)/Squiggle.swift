@@ -9,8 +9,8 @@ import SwiftUI
 
 struct Squiggle: Shape {
     func path(in rect: CGRect) -> Path {
-        let startAngle = Angle(degrees: 0 - 90)
-        let endAngle = Angle(degrees: 1 - 90)
+//        let startAngle = Angle(degrees: 0 - 90)
+//        let endAngle = Angle(degrees: 1 - 90)
         
         var path = Path()
         //p1
@@ -88,10 +88,12 @@ struct Squiggle: Shape {
 //            center: CGPoint(x: rect.width * 0.73, y: rect.height * 0.275),
 //            radius: 8, startAngle: startAngle, endAngle: endAngle, clockwise: true)
 
-        path.addQuadCurve(to: CGPoint(x: rect.width * 0.68, y: rect.height * 0.34), control: CGPoint(x: rect.width * 0.75 , y: rect.height * 0.21))
+//        path.addQuadCurve(to: CGPoint(x: rect.width * 0.69, y: rect.height * 0.34), control: CGPoint(x: rect.width * 0.75 , y: rect.height * 0.21))
         
+        
+        path.addQuadCurve(to: CGPoint(x: rect.width * 0.73, y: rect.height * 0.275), control: CGPoint(x: rect.width * 0.81 , y: rect.height * 0.19))
+    
         path.closeSubpath()
-        
         return path
     }
 }
