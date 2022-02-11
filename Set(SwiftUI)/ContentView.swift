@@ -8,15 +8,15 @@
 import SwiftUI
 
 struct ContentView: View {
-    let viewModel = ViewModel()
+    @ObservedObject var viewModel = ViewModel()
     var body: some View {
         VStack {
             LazyVGrid(columns: [GridItem(.adaptive(minimum: 65))]) {
                 ForEach(viewModel.playingCards, content: { card in
-                    Card(shape: viewModel.transform(shape: card.shape, shading: card.shading), color: viewModel.transform(color: card.color), number: viewModel.transform(number: card.number), symbol: card.shape)
+                    Card(shape: transform(shape: card.shape, shading: card.shading), color: transform(color: card.color), number: transform(number: card.number), symbol: card.shape)
                         .aspectRatio(2/3, contentMode: .fit)
                         .onTapGesture {
-                            print("Oucch!")
+                            viewModel.choose(card)
                         }
                 })
             }
@@ -24,28 +24,56 @@ struct ContentView: View {
         }
         .padding()
     }
-}
+    
+    func transform(color: ViewModel.SetColor ) -> Color {
+        switch color {
+        case .red:
+            return Color.pink
+        case .blue:
+            return Color.blue
+        case .green:
+            return Color.green
+        }
+    }
+    
+    func transform(number: ViewModel.SetNumber ) -> Int {
+        switch number {
+        case .one:
+            return 1
+        case .two:
+            return 2
+        case .three:
+            return 3
+        }
+    }
+    
+    @ViewBuilder
+    private func transform<S: Shape>(shape: S, shading: ViewModel.SetShading) -> some View {
+        switch shading {
+        case .open:
+            shape
+                .stroke()
+        case .striped:
+            shape
+                .striped()
+        case .solid:
+            shape
 
-struct Card<ShapeView: View>: View {
-    var shape: ShapeView
-    var color: Color
-    var number: Int
-    var symbol: ViewModel.SetShape
-    var body: some View {
-        ZStack {
-            RoundedRectangle(cornerRadius: 10)
-                .foregroundColor(.white)
-            RoundedRectangle(cornerRadius: 10)
-                .strokeBorder(lineWidth: 3)
-                .foregroundColor(.gray)
-            VStack(spacing: symbol == .squiggle ? -5 : nil) {
-                ForEach(0..<number) { _ in
-                    shape
-                        .scaleEffect(symbol == .squiggle ? 1.2 : 1)
-                        .foregroundColor(color)
-                }
-            }
-            .padding()
+        }
+    }
+    
+    @ViewBuilder
+    func transform(shape: ViewModel.SetShape, shading: ViewModel.SetShading) -> some View {
+        switch shape {
+        case .oval:
+            transform(shape: Capsule(), shading: shading)
+                .aspectRatio(3/1.5, contentMode: .fit)
+        case .squiggle:
+            transform(shape: Squiggle(), shading: shading)
+                .aspectRatio(3/2.7, contentMode: .fit)
+        case .diamond:
+            transform(shape: Diamond(), shading: shading)
+                .aspectRatio(3/1.5, contentMode: .fit)
         }
     }
 }
