@@ -65,6 +65,17 @@ struct Model<SetShape, SetColor, SetNumber, SetShading> where SetShape: Equatabl
         return false
     }
     
+    
+    
+    mutating func drawCards() {
+        if wasMatching,  playingCard[chosenCards.first!].state == .matched {
+            chosenCards.forEach({ playingCard[$0] = deck.removeFirst()})
+            chosenCards.removeSubrange(..<3)
+        } else {
+            playingCard += deck.getAndRemove(first: 3)
+        }
+    }
+    
     mutating func choose(_ card: Card) {
         if let indexOfChosenCard = playingCard.firstIndex(where: {$0.id == card.id}),
            playingCard[indexOfChosenCard].state != .matched {
@@ -76,7 +87,9 @@ struct Model<SetShape, SetColor, SetNumber, SetShading> where SetShape: Equatabl
                         }
                     }
                 } else {
-                    chosenCards.forEach({ playingCard[$0] = deck.removeFirst() })
+                    if !deck.isEmpty {
+                        chosenCards.forEach({ playingCard[$0] = deck.removeFirst() })
+                    }
                     points += 3
                 }
                 chosenCards.removeSubrange(..<3)

@@ -15,12 +15,24 @@ class ViewModel: ObservableObject {
         self.model = Model(shapes: SetShape.allCases, colors: SetColor.allCases, numbers: SetNumber.allCases, shadings: SetShading.allCases)
     }
     
+    func newGame() {
+        self.model = Model(shapes: SetShape.allCases, colors: SetColor.allCases, numbers: SetNumber.allCases, shadings: SetShading.allCases)
+    }
+    
     var playingCards: [SetModel.Card] {
         model.playingCard
     }
     
     func choose(_ card: SetModel.Card) {
         model.choose(card)
+    }
+    
+    func drawCards() {
+        model.drawCards()
+    }
+    
+    var cardsOnDeck: Int {
+        model.deck.count
     }
     
     var points: Int {

@@ -17,6 +17,7 @@
 		849017C827B390CF002C2FF0 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 849017C727B390CE002C2FF0 /* ViewModel.swift */; };
 		849017CE27B66E21002C2FF0 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 849017CD27B66E21002C2FF0 /* CardView.swift */; };
 		849017D027B66E6B002C2FF0 /* StripedPattern.swift in Sources */ = {isa = PBXBuildFile; fileRef = 849017CF27B66E6B002C2FF0 /* StripedPattern.swift */; };
+		84BCAE3927BE5E740052F44A /* CustomLazyVGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84BCAE3827BE5E730052F44A /* CustomLazyVGrid.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,6 +32,7 @@
 		849017C727B390CE002C2FF0 /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
 		849017CD27B66E21002C2FF0 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		849017CF27B66E6B002C2FF0 /* StripedPattern.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StripedPattern.swift; sourceTree = "<group>"; };
+		84BCAE3827BE5E730052F44A /* CustomLazyVGrid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomLazyVGrid.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,6 +75,7 @@
 				849017C527B15476002C2FF0 /* Model.swift */,
 				849017CD27B66E21002C2FF0 /* CardView.swift */,
 				849017CF27B66E6B002C2FF0 /* StripedPattern.swift */,
+				84BCAE3827BE5E730052F44A /* CustomLazyVGrid.swift */,
 			);
 			path = "Set(SwiftUI)";
 			sourceTree = "<group>";
@@ -155,6 +158,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				84BCAE3927BE5E740052F44A /* CustomLazyVGrid.swift in Sources */,
 				849017D027B66E6B002C2FF0 /* StripedPattern.swift in Sources */,
 				849017C627B15476002C2FF0 /* Model.swift in Sources */,
 				849017C227AFC4FD002C2FF0 /* Diamond.swift in Sources */,
