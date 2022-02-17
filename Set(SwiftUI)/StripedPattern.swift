@@ -11,7 +11,7 @@ struct StripedPattern: Shape {
     func path(in rect: CGRect) -> Path {
         var path = Path()
         var posX: CGFloat = 0
-        while posX <= rect.maxX {
+        while posX < rect.maxX {
             path.addRect(CGRect(x: posX, y: 0.0, width: rect.width * 0.03, height: rect.height))
             posX += rect.width * 0.10
         }
