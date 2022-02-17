@@ -9,7 +9,7 @@ import SwiftUI
 
 class ViewModel: ObservableObject {
     typealias SetModel = Model<SetShape, SetColor, SetNumber, SetShading>
-    @Published var model: SetModel
+    @Published private var model: SetModel
     
     init() {
         self.model = Model(shapes: SetShape.allCases, colors: SetColor.allCases, numbers: SetNumber.allCases, shadings: SetShading.allCases)
@@ -21,6 +21,10 @@ class ViewModel: ObservableObject {
     
     func choose(_ card: SetModel.Card) {
         model.choose(card)
+    }
+    
+    var points: Int {
+        model.points
     }
     
     enum SetShape: CaseIterable {

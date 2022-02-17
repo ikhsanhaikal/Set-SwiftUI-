@@ -15,7 +15,7 @@
 		849017C427B12F22002C2FF0 /* Squiggle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 849017C327B12F21002C2FF0 /* Squiggle.swift */; };
 		849017C627B15476002C2FF0 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 849017C527B15476002C2FF0 /* Model.swift */; };
 		849017C827B390CF002C2FF0 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 849017C727B390CE002C2FF0 /* ViewModel.swift */; };
-		849017CE27B66E21002C2FF0 /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 849017CD27B66E21002C2FF0 /* Card.swift */; };
+		849017CE27B66E21002C2FF0 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 849017CD27B66E21002C2FF0 /* CardView.swift */; };
 		849017D027B66E6B002C2FF0 /* StripedPattern.swift in Sources */ = {isa = PBXBuildFile; fileRef = 849017CF27B66E6B002C2FF0 /* StripedPattern.swift */; };
 /* End PBXBuildFile section */
 
@@ -29,7 +29,7 @@
 		849017C327B12F21002C2FF0 /* Squiggle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Squiggle.swift; sourceTree = "<group>"; };
 		849017C527B15476002C2FF0 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		849017C727B390CE002C2FF0 /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
-		849017CD27B66E21002C2FF0 /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
+		849017CD27B66E21002C2FF0 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		849017CF27B66E6B002C2FF0 /* StripedPattern.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StripedPattern.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -71,7 +71,7 @@
 				849017C127AFC4FD002C2FF0 /* Diamond.swift */,
 				849017C327B12F21002C2FF0 /* Squiggle.swift */,
 				849017C527B15476002C2FF0 /* Model.swift */,
-				849017CD27B66E21002C2FF0 /* Card.swift */,
+				849017CD27B66E21002C2FF0 /* CardView.swift */,
 				849017CF27B66E6B002C2FF0 /* StripedPattern.swift */,
 			);
 			path = "Set(SwiftUI)";
@@ -158,7 +158,7 @@
 				849017D027B66E6B002C2FF0 /* StripedPattern.swift in Sources */,
 				849017C627B15476002C2FF0 /* Model.swift in Sources */,
 				849017C227AFC4FD002C2FF0 /* Diamond.swift in Sources */,
-				849017CE27B66E21002C2FF0 /* Card.swift in Sources */,
+				849017CE27B66E21002C2FF0 /* CardView.swift in Sources */,
 				849017B627AFC2C2002C2FF0 /* ContentView.swift in Sources */,
 				849017C427B12F22002C2FF0 /* Squiggle.swift in Sources */,
 				849017C827B390CF002C2FF0 /* ViewModel.swift in Sources */,
