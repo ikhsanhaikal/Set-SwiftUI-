@@ -10,26 +10,28 @@ import SwiftUI
 
 struct Model<SetShape, SetColor, SetNumber, SetShading> where SetShape: Equatable, SetColor: Equatable, SetNumber: Equatable, SetShading: Equatable {
     
-    var decks: [Card]
+    var deck: [Card]
     
     var playingCard: [Card] = []
-    var currentlyChosenCards: [Int] = []
-    var wasSet: Bool?
+    
+    private var chosenCards: [Int] = []
+    private var wasMatching = false
+    var points = 0
     
     init(shapes: Array<SetShape>, colors: Array<SetColor>, numbers: Array<SetNumber>, shadings: Array<SetShading> ) {
-        decks = []
+        deck = []
         for shape in shapes {
             for color in colors {
                 for number in numbers {
                     for shading in shadings {
                         let card = Card(shape: shape, color: color, number: number, shading: shading)
-                        decks.append(card)
+                        deck.append(card)
                     }
                 }
             }
         }
-        decks.shuffle()
-        playingCard = decks.getAndRemove(first: 12)
+        deck.shuffle()
+        playingCard = deck.getAndRemove(first: 12)
     }
     
     private func check<SetContent: Equatable>(x: SetContent, y: SetContent, z: SetContent) -> Bool {
@@ -64,42 +66,62 @@ struct Model<SetShape, SetColor, SetNumber, SetShading> where SetShape: Equatabl
     }
     
     mutating func choose(_ card: Card) {
-        if let chosenCard = playingCard.firstIndex(where: {$0.id == card.id}) {
-            if currentlyChosenCards.contains(chosenCard) {
-                currentlyChosenCards.removeAll(where: {$0 == chosenCard})
-                return
-            }
-            currentlyChosenCards.append(chosenCard)
-            print(currentlyChosenCards)
-            if currentlyChosenCards.count == 3 {
-                wasSet = check(suspect: currentlyChosenCards)
-                print("is set: \(String(wasSet!))")
-            } else if currentlyChosenCards.count > 3 {
-                if let result = wasSet, result {
-                    currentlyChosenCards.forEach {
-                        playingCard[$0] = decks.removeFirst()
+        if let indexOfChosenCard = playingCard.firstIndex(where: {$0.id == card.id}),
+           playingCard[indexOfChosenCard].state != .matched {
+            if wasMatching {
+                if playingCard[chosenCards.first!].state == .notmatched {
+                    chosenCards.forEach {
+                        if playingCard[$0].state == .notmatched {
+                            playingCard[$0].state = .normal
+                        }
                     }
+                } else {
+                    chosenCards.forEach({ playingCard[$0] = deck.removeFirst() })
+                    points += 3
                 }
-                currentlyChosenCards.removeFirst(3)
-                wasSet = nil
+                chosenCards.removeSubrange(..<3)
+                wasMatching = false
+            }
+            if let index = chosenCards.firstIndex(of: indexOfChosenCard) {
+                chosenCards.remove(at: index)
+                playingCard[indexOfChosenCard].state = .normal
+            } else {
+                playingCard[indexOfChosenCard].state = .selected
+                chosenCards.append(indexOfChosenCard)
+                if chosenCards.count == 3 {
+                    if check(suspect: chosenCards) {
+                        chosenCards.forEach { playingCard[$0].state = .matched}
+                    } else {
+                        chosenCards.forEach { playingCard[$0].state = .notmatched}
+                    }
+                    wasMatching = true
+                }
             }
         }
     }
         
-    
     struct Card: Identifiable {
-        var id = UUID()
-        var shape  : SetShape
-        var color  : SetColor
-        var number : SetNumber
-        var shading: SetShading
+
+        let shape  : SetShape
+        let color  : SetColor
+        let number : SetNumber
+        let shading: SetShading
+        var state  : CardState = .normal
+        let id = UUID()
+        
+        enum CardState {
+            case selected
+            case matched
+            case notmatched
+            case normal
+        }
     }
 }
 
 extension Array {
     mutating func getAndRemove(first: Int) -> [Element]{
-        let newArray = self[..<12].map({ $0 })
-        self.removeFirst(12)
+        let newArray = self[..<first].map({ $0 })
+        self.removeFirst(first)
         return Array(newArray)
     }
 }
